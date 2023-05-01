@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZD82UV_HFT_2022232.Client",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZD82UV_HFT_2022232.Models", "ZD82UV_HFT_2022232.Models\ZD82UV_HFT_2022232.Models.csproj", "{6FC1BD4F-1D02-4CE5-AFF5-76A29FFCA12E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZD82UV_HFT_2022232.Logic", "ZD82UV_HFT_2022232.Logic\ZD82UV_HFT_2022232.Logic.csproj", "{34697E07-7AF0-4625-BCFB-BD7CACB3BE41}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{6FC1BD4F-1D02-4CE5-AFF5-76A29FFCA12E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6FC1BD4F-1D02-4CE5-AFF5-76A29FFCA12E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6FC1BD4F-1D02-4CE5-AFF5-76A29FFCA12E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{34697E07-7AF0-4625-BCFB-BD7CACB3BE41}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{34697E07-7AF0-4625-BCFB-BD7CACB3BE41}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{34697E07-7AF0-4625-BCFB-BD7CACB3BE41}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{34697E07-7AF0-4625-BCFB-BD7CACB3BE41}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
