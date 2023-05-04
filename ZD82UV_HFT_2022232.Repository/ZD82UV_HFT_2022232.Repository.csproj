@@ -4,4 +4,8 @@
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\ZD82UV_HFT_2022232.Models\ZD82UV_HFT_2022232.Models.csproj" />
+  </ItemGroup>
+
 </Project>
