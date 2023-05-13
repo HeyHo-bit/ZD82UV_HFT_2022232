@@ -19,6 +19,9 @@ namespace ZD82UV_HFT_2022232.Models
         public string Album { get; set; }
 
         [NotMapped]
+        public virtual Label Label { get; set; }
+
+        [NotMapped]
         public virtual ICollection<Genre> Genres { get; set; }
         
         [NotMapped]
