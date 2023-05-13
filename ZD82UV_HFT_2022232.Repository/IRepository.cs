@@ -6,7 +6,13 @@ using System.Threading.Tasks;
 
 namespace ZD82UV_HFT_2022232.Repository
 {
-    internal interface IRepository
+    public interface IRepository<T> where T : class
     {
+        IQueryable<T> ReadAll();
+        T Read(int id);
+        void Create(T item);
+        void Update(T item);
+        void Delete(int id);
+
     }
 }
