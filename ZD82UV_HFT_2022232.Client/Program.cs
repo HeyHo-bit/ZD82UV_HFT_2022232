@@ -1,4 +1,5 @@
 ﻿using System;
+using ZD82UV_HFT_2022232.Models;
 
 namespace ZD82UV_HFT_2022232.Client
 {
@@ -7,6 +8,7 @@ namespace ZD82UV_HFT_2022232.Client
         static void Main(string[] args)
         {
             Console.WriteLine("Hello World!");
+            Band band = new Band();
         }
     }
 }
