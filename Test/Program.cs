@@ -2,8 +2,7 @@
 using System.Linq;
 using ZD82UV_HFT_2022232.Models;
 using ZD82UV_HFT_2022232.Repository;
-
-namespace ZD82UV_HFT_2022232.Client
+namespace Test
 {
     internal class Program
     {
