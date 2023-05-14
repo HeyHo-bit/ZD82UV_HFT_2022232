@@ -12,7 +12,7 @@ namespace ZD82UV_HFT_2022232.Repository
         public DbSet<Song> Songs { get; set; }
 
         public DbSet<Genre> Genres { get; set; }  
-        public DbSet<Band> Bands { get; set; }
+        public DbSet<BandRepository> Bands { get; set; }
         public DbSet<Label> Labels { get; set; }
 
         public SongDbContext()
@@ -40,7 +40,7 @@ namespace ZD82UV_HFT_2022232.Repository
                 .HasForeignKey(song => song.LabelId)
             .OnDelete(DeleteBehavior.Cascade));
 
-            modelBuilder.Entity<Band>()
+            modelBuilder.Entity<BandRepository>()
                 .HasMany(x => x.Songs)
                 .WithMany(x => x.Bands)
                 .UsingEntity<Genre>(
@@ -87,12 +87,12 @@ namespace ZD82UV_HFT_2022232.Repository
              };
 
             //SEED BANDS
-            var band = new List<Band>()
+            var band = new List<BandRepository>()
             { 
-                new Band {BandId = 1, BandName = "Rammstein"},
-                new Band {BandId = 2, BandName = "Post Malone"},
-                new Band {BandId = 3, BandName = "Slayer"},
-                new Band {BandId = 4, BandName = "Maneskin"},
+                new BandRepository {BandId = 1, BandName = "Rammstein"},
+                new BandRepository {BandId = 2, BandName = "Post Malone"},
+                new BandRepository {BandId = 3, BandName = "Slayer"},
+                new BandRepository {BandId = 4, BandName = "Maneskin"},
 
 
             };
@@ -109,7 +109,7 @@ namespace ZD82UV_HFT_2022232.Repository
             };
             modelBuilder.Entity<Song>().HasData(song);
             modelBuilder.Entity<Label>().HasData(label);
-            modelBuilder.Entity<Band>().HasData(band);
+            modelBuilder.Entity<BandRepository>().HasData(band);
             modelBuilder.Entity<Genre>().HasData(genre);
         }
     }

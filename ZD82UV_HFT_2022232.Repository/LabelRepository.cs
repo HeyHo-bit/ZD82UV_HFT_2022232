@@ -7,20 +7,20 @@ using ZD82UV_HFT_2022232.Models;
 
 namespace ZD82UV_HFT_2022232.Repository
 {
-    public class SongRepository : Repository<Song>, IRepository<Song>
+    internal class LabelRepository : Repository<Label>, IRepository<Label>
     {
-        public SongRepository(SongDbContext ctx) : base(ctx)
+        public LabelRepository(SongDbContext ctx) : base(ctx)
         {
         }
 
-        public override Song Read(int id)
+        public override Label Read(int id)
         {
-            return ctx.Songs.FirstOrDefault(t => t.SongId == id);
+            return ctx.Labels.FirstOrDefault(t => t.LabelId == id);
         }
 
-        public override void Update(Song item)
+        public override void Update(Label item)
         {
-            var old = Read(item.SongId);
+            var old = Read(item.LabelId);
             foreach (var prop in old.GetType().GetProperties())
             {
                 prop.SetValue(old, prop.GetValue(item));
