@@ -65,12 +65,12 @@ namespace ZD82UV_HFT_2022232.Repository
             //SEED SONGS
             var song = new List<Song>()
             { 
-                new Song { SongId = 1, SongTitle = "Deutschland",ReleaseDate = new DateTime(2019, 3, 28),  Album = "Untitled", LabelId = 1 },
-                new Song { SongId = 2, SongTitle = "Sunflower",ReleaseDate = new DateTime(2018, 9, 19),  Album = "Spider-Man: Into the Spider-Verse ", LabelId = 2 },
-                new Song { SongId = 3, SongTitle = "Raining Blood",ReleaseDate = new DateTime(1986, 9, 7),  Album = "Reign in Blood", LabelId = 3 },
-                new Song { SongId = 4, SongTitle = "Radio",ReleaseDate = new DateTime(2019, 3, 28),  Album = "Untitled", LabelId = 1 },
-                new Song { SongId = 5, SongTitle = "Gossip",ReleaseDate = new DateTime(2023, 1, 13),  Album = "Rush!", LabelId = 4 },
-                new Song { SongId = 6, SongTitle = "GASOLINE",ReleaseDate = new DateTime(2023, 1, 13),  Album = "Rush!", LabelId = 4 },
+                new Song { SongId = 1, SongTitle = "Deutschland",ReleaseDate = new DateTime(2019, 3, 28),  Album = "Untitled", LabelId = 1,Income =50 ,Rating = 4},
+                new Song { SongId = 2, SongTitle = "Sunflower",ReleaseDate = new DateTime(2018, 9, 19),  Album = "Spider-Man: Into the Spider-Verse ", LabelId = 2, Income = 70, Rating = 4},
+                new Song { SongId = 3, SongTitle = "Raining Blood",ReleaseDate = new DateTime(1986, 9, 7),  Album = "Reign in Blood", LabelId = 3,Income = 35, Rating = 3 },
+                new Song { SongId = 4, SongTitle = "Radio",ReleaseDate = new DateTime(2019, 3, 28),  Album = "Untitled", LabelId = 1, Income = 25, Rating = 3},
+                new Song { SongId = 5, SongTitle = "Gossip",ReleaseDate = new DateTime(2023, 1, 13),  Album = "Rush!", LabelId = 4, Income = 80,Rating =5 },
+                new Song { SongId = 6, SongTitle = "GASOLINE",ReleaseDate = new DateTime(2023, 1, 13),  Album = "Rush!", LabelId = 4,Income = 75,Rating = 5 },
 
 
             };

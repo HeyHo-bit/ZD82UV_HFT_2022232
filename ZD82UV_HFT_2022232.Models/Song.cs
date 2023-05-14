@@ -20,6 +20,10 @@ namespace ZD82UV_HFT_2022232.Models
 
         public int LabelId { get; set; }
 
+        public double Income { get; set; }
+
+        public int Rating { get; set; }
+
         [NotMapped]
         public virtual Label Label { get; set; }
 
