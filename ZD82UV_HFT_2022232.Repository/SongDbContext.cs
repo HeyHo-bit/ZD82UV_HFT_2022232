@@ -12,7 +12,7 @@ namespace ZD82UV_HFT_2022232.Repository
         public DbSet<Song> Songs { get; set; }
 
         public DbSet<Genre> Genres { get; set; }  
-        public DbSet<BandRepository> Bands { get; set; }
+        public DbSet<Band> Bands { get; set; }
         public DbSet<Label> Labels { get; set; }
 
         public SongDbContext()
