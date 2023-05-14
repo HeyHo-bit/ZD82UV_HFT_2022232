@@ -9,8 +9,11 @@ namespace ZD82UV_HFT_2022232.Client
     {
         static void Main(string[] args)
         {
-            SongDbContext db = new SongDbContext();
-            var items = db.Songs.ToArray();
+            //SongDbContext db = new SongDbContext();
+            IRepository<Band> repo = new BandRepository(new SongDbContext());
+
+            var items = repo.ReadAll().ToArray();
+            //var items = db.Songs.ToArray();
             ;
         }
     }

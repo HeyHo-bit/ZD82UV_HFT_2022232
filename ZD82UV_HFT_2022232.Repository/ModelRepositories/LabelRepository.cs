@@ -7,7 +7,7 @@ using ZD82UV_HFT_2022232.Models;
 
 namespace ZD82UV_HFT_2022232.Repository
 {
-    internal class LabelRepository : Repository<Label>, IRepository<Label>
+    public class LabelRepository : Repository<Label>, IRepository<Label>
     {
         public LabelRepository(SongDbContext ctx) : base(ctx)
         {

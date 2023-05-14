@@ -25,10 +25,9 @@ namespace ZD82UV_HFT_2022232.Repository
 
             if (!builder.IsConfigured)
             {
-                string conn = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Song.mdf;Integrated Security=True;MultipleActiveResultSets=true";
                 builder
                     .UseLazyLoadingProxies()
-                    .UseSqlServer(conn);
+                    .UseInMemoryDatabase("song");
             }
         }
 
@@ -40,7 +39,7 @@ namespace ZD82UV_HFT_2022232.Repository
                 .HasForeignKey(song => song.LabelId)
             .OnDelete(DeleteBehavior.Cascade));
 
-            modelBuilder.Entity<BandRepository>()
+            modelBuilder.Entity<Band>()
                 .HasMany(x => x.Songs)
                 .WithMany(x => x.Bands)
                 .UsingEntity<Genre>(
@@ -87,12 +86,12 @@ namespace ZD82UV_HFT_2022232.Repository
              };
 
             //SEED BANDS
-            var band = new List<BandRepository>()
+            var band = new List<Band>()
             { 
-                new BandRepository {BandId = 1, BandName = "Rammstein"},
-                new BandRepository {BandId = 2, BandName = "Post Malone"},
-                new BandRepository {BandId = 3, BandName = "Slayer"},
-                new BandRepository {BandId = 4, BandName = "Maneskin"},
+                new Band {BandId = 1, BandName = "Rammstein"},
+                new Band {BandId = 2, BandName = "Post Malone"},
+                new Band {BandId = 3, BandName = "Slayer"},
+                new Band {BandId = 4, BandName = "Maneskin"},
 
 
             };
@@ -109,7 +108,7 @@ namespace ZD82UV_HFT_2022232.Repository
             };
             modelBuilder.Entity<Song>().HasData(song);
             modelBuilder.Entity<Label>().HasData(label);
-            modelBuilder.Entity<BandRepository>().HasData(band);
+            modelBuilder.Entity<Band>().HasData(band);
             modelBuilder.Entity<Genre>().HasData(genre);
         }
     }

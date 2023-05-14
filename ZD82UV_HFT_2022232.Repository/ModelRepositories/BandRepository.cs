@@ -7,7 +7,7 @@ using ZD82UV_HFT_2022232.Models;
 
 namespace ZD82UV_HFT_2022232.Repository
 {
-    internal class BandRepository : Repository<Band>, IRepository<Band>
+    public class BandRepository : Repository<Band>, IRepository<Band>
     {
         public BandRepository(SongDbContext ctx) : base(ctx)
         {

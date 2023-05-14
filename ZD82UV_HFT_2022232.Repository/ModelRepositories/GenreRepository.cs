@@ -7,7 +7,7 @@ using ZD82UV_HFT_2022232.Models;
 
 namespace ZD82UV_HFT_2022232.Repository
 {
-    internal class GenreRepository : Repository<Genre>, IRepository<Genre>
+    public class GenreRepository : Repository<Genre>, IRepository<Genre>
     {
         public GenreRepository(SongDbContext ctx) : base(ctx)
         {
