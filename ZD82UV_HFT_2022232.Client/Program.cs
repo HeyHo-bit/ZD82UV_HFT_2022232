@@ -45,10 +45,13 @@ namespace ZD82UV_HFT_2022232.Client
         static void Main(string[] args)
         {
             //SongDbContext db = new SongDbContext();
-            IRepository<Song> repo = new SongRepository(new SongDbContext());
+            //IRepository<Song> repo = new SongRepository(new SongDbContext());
 
-            var items = repo.ReadAll().ToArray();
+            //var items = repo.ReadAll().ToArray();
             //var items = db.Songs.ToArray();
+
+            //var item = songLogic.LabelRevenu();
+            //var item = songLogic.ReadAll();
 
             var ctx = new SongDbContext();
 
@@ -61,6 +64,10 @@ namespace ZD82UV_HFT_2022232.Client
             genreLogic = new GenreLogic(genreRepo);
             bandLogic = new BandLogic(bandRepo);
             labelLogic = new LabelLogic(labelRepo);
+
+            var item = songLogic.YearStatistics().ToArray();
+            var items = songLogic.LabelRevenu();
+            ;
 
             var bandSubMenu = new ConsoleMenu(args, level: 1)
                 .Add("List", () => List("Band"))
