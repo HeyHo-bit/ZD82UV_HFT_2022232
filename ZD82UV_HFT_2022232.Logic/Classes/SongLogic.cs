@@ -54,7 +54,7 @@ namespace ZD82UV_HFT_2022232.Logic
 
         //NON-CRUD 5 (1 in GenresLogic)
 
-        public IQueryable/*IEnumerable*/<LabelReve> LabelRevenu()
+        public IEnumerable/*IEnumerable*/<LabelReve> LabelRevenu()
         {
             var labelRe = from song in this.repo.ReadAll()
                           group song by song.Label.LabelName into grp
@@ -79,7 +79,7 @@ namespace ZD82UV_HFT_2022232.Logic
                    };
         }
 
-        public IQueryable<Topla> TopLabel()
+        public IEnumerable<Topla> TopLabel()
         {
             var toplabel = from song in this.repo.ReadAll()
                            group song by song.Label.LabelName into grp
@@ -92,7 +92,7 @@ namespace ZD82UV_HFT_2022232.Logic
             return toplabel;
         }
 
-        public IQueryable<BestSo> BestSong()
+        public IEnumerable<BestSo> BestSong()
         {
             var bestsong = from song in this.repo.ReadAll()
                            group song by song.SongTitle into grp

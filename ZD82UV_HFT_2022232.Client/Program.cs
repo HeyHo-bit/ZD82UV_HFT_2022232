@@ -65,12 +65,12 @@ namespace ZD82UV_HFT_2022232.Client
             bandLogic = new BandLogic(bandRepo);
             labelLogic = new LabelLogic(labelRepo);
 
-            var item = songLogic.YearStatistics().ToArray();
-            var items = songLogic.LabelRevenu();
-            var thing = songLogic.TopLabel();
-            var thing2 = songLogic.BestSong();
-            var thing3 = genreLogic.MostSong();
-            ;
+            //var item = songLogic.YearStatistics().ToArray();
+            //var items = songLogic.LabelRevenu();
+            //var thing = songLogic.TopLabel();
+            //var thing2 = songLogic.BestSong();
+            //var thing3 = genreLogic.MostSong();
+            //;
 
             var bandSubMenu = new ConsoleMenu(args, level: 1)
                 .Add("List", () => List("Band"))

@@ -6,13 +6,13 @@ namespace ZD82UV_HFT_2022232.Logic
 {
     public interface ISongLogic
     {
-        IQueryable<BestSo> BestSong();
+        IEnumerable<BestSo> BestSong();
         void Create(Song item);
         void Delete(int id);
-        IQueryable<LabelReve> LabelRevenu();
+        IEnumerable<LabelReve> LabelRevenu();
         Song Read(int id);
         IQueryable<Song> ReadAll();
-        IQueryable<Topla> TopLabel();
+        IEnumerable<Topla> TopLabel();
         void Update(Song item);
         IEnumerable<YearInfo> YearStatistics();
     }

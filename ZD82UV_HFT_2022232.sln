@@ -19,7 +19,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Frontend", "Frontend", "{04
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{E0FCD349-4EC1-48FA-8DA0-8B2147E9A721}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZD82UV_HFT_2022232.Client", "ZD82UV_HFT_2022232.Client\ZD82UV_HFT_2022232.Client.csproj", "{67E02602-2D3A-45E5-AD0F-F59AF761E431}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ZD82UV_HFT_2022232.Client", "ZD82UV_HFT_2022232.Client\ZD82UV_HFT_2022232.Client.csproj", "{67E02602-2D3A-45E5-AD0F-F59AF761E431}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Others", "Others", "{12FD1BE6-2DE5-4B34-ADB7-204E335190B9}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
