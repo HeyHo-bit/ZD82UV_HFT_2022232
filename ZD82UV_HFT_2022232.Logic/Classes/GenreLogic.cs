@@ -8,7 +8,7 @@ using ZD82UV_HFT_2022232.Repository;
 
 namespace ZD82UV_HFT_2022232.Logic
 {
-    public class GenreLogic 
+    public class GenreLogic : IGenreLogic
     {
 
         IRepository<Genre> repo;

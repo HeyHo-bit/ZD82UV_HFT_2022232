@@ -8,17 +8,16 @@ using ZD82UV_HFT_2022232.Repository;
 
 namespace ZD82UV_HFT_2022232.Logic
 {
-    public class BandLogic
+    public class LabelLogic : ILabelLogic
     {
-        IRepository<Band> repo;
+        IRepository<Label> repo;
 
-        public BandLogic(IRepository<Band> repo)
+        public LabelLogic(IRepository<Label> repo)
         {
             this.repo = repo;
         }
 
-        
-        public void Create(Band item)
+        public void Create(Label item)
         {
             this.repo.Create(item);
         }
@@ -28,17 +27,17 @@ namespace ZD82UV_HFT_2022232.Logic
             this.repo.Delete(id);
         }
 
-        public Band Read(int id)
+        public Label Read(int id)
         {
             return this.repo.Read(id);
         }
 
-        public IQueryable<Band> ReadAll()
+        public IQueryable<Label> ReadAll()
         {
             return this.repo.ReadAll();
         }
 
-        public void Update(Band item)
+        public void Update(Label item)
         {
             this.repo.Update(item);
         }

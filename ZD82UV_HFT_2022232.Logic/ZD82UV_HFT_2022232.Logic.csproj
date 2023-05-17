@@ -9,9 +9,4 @@
     <ProjectReference Include="..\ZD82UV_HFT_2022232.Repository\ZD82UV_HFT_2022232.Repository.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Classes\" />
-    <Folder Include="Interfaces\" />
-  </ItemGroup>
-
 </Project>

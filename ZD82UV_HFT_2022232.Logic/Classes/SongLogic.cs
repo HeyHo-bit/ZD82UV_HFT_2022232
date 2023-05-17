@@ -52,7 +52,7 @@ namespace ZD82UV_HFT_2022232.Logic
             this.repo.Update(item);
         }
 
-        //NON-CRUD
+        //NON-CRUD 5 (1 in GenresLogic)
 
         public IQueryable/*IEnumerable*/<LabelReve> LabelRevenu()
         {
@@ -82,13 +82,13 @@ namespace ZD82UV_HFT_2022232.Logic
         public IQueryable<Topla> TopLabel()
         {
             var toplabel = from song in this.repo.ReadAll()
-                          group song by song.Label.LabelName into grp
-                          select new Topla()
-                          {
-                              LabelName = grp.Key,
-                              SongCount = grp.Count(),
-                              Revenu = grp.Max(c => c.Income)
-                          };
+                           group song by song.Label.LabelName into grp
+                           select new Topla()
+                           {
+                               LabelName = grp.Key,
+                               SongCount = grp.Count(),
+                               Revenu = grp.Max(c => c.Income)
+                           };
             return toplabel;
         }
 
