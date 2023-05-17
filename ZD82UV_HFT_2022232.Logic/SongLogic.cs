@@ -62,7 +62,7 @@ namespace ZD82UV_HFT_2022232.Logic
                           {
                               LabelName = grp.Key,
                               SongCount = grp.Count(),
-                              Revenu = grp.Average(c => c.Income)
+                              Revenu = grp.Sum(c => c.Income)
                           };
             return labelRe;
         }
@@ -79,6 +79,54 @@ namespace ZD82UV_HFT_2022232.Logic
                    };
         }
 
+        public IQueryable<Topla> TopLabel()
+        {
+            var toplabel = from song in this.repo.ReadAll()
+                          group song by song.Label.LabelName into grp
+                          select new Topla()
+                          {
+                              LabelName = grp.Key,
+                              SongCount = grp.Count(),
+                              Revenu = grp.Max(c => c.Income)
+                          };
+            return toplabel;
+        }
+
+        public IQueryable<BestSo> BestSong()
+        {
+            var bestsong = from song in this.repo.ReadAll()
+                           group song by song.SongTitle into grp
+                           select new BestSo()
+                           {
+                               SongName = grp.Key,
+                               SongCount = grp.Count(),
+                               Revenu = grp.Max(c => c.Rating)
+                           };
+            return bestsong;
+        }
+
+    }
+
+    public class BestSo
+    {
+        public BestSo()
+        {
+        }
+
+        public string SongName { get; set; }
+        public int SongCount { get; set; }
+        public int Revenu { get; set; }
+    }
+
+    public class Topla
+    {
+        public Topla()
+        {
+        }
+
+        public string LabelName { get; set; }
+        public int SongCount { get; set; }
+        public double Revenu { get; set; }
     }
 
     public class YearInfo

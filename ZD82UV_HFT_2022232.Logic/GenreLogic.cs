@@ -42,5 +42,28 @@ namespace ZD82UV_HFT_2022232.Logic
         {
             this.repo.Update(item);
         }
+
+        //non-crud
+
+        public IEnumerable<MostSo> MostSong()
+        {
+            return from x in this.repo.ReadAll()
+                   group x by x.Song.SongTitle into g
+                   select new MostSo()
+                   {
+                       SongName = g.Key,
+                       SongNumber = g.Count()
+                   };
+        }
+    }
+
+    public class MostSo
+    {
+        public MostSo()
+        {
+        }
+
+        public string SongName { get; set; }
+        public int SongNumber { get; set; }
     }
 }
