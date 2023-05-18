@@ -19,7 +19,7 @@ namespace ZD82UV_HFT_2022232.Endpoint.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<Song> Create()
+        public IEnumerable<Song> ReadAll()
         {
             return this.logic.ReadAll();
         }

@@ -21,10 +21,11 @@ namespace ZD82UV_HFT_2022232.Models
         public int BandId { get; set; }
 
         [NotMapped]
+        [JsonIgnore]
         public virtual Song Song { get; set; }
         
         [NotMapped]
-        [JsonIgnore]
+
         public virtual Band Band { get; set; }
     }
 }
