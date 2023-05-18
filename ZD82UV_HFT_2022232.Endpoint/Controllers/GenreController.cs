@@ -7,37 +7,37 @@ using ZD82UV_HFT_2022232.Models;
 
 namespace ZD82UV_HFT_2022232.Endpoint.Controllers
 {
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     [ApiController]
-    public class SongController : ControllerBase
+    public class GenreController : ControllerBase
     {
-        ISongLogic logic;
+        IGenreLogic logic;
 
-        public SongController(ISongLogic logic)
+        public GenreController(IGenreLogic logic)
         {
             this.logic = logic;
         }
 
         [HttpGet]
-        public IEnumerable<Song> Create()
+        public IEnumerable<Genre> ReadAll()
         {
             return this.logic.ReadAll();
         }
 
         [HttpGet("{id}")]
-        public Song Read(int id)
+        public Genre Read(int id)
         {
             return this.logic.Read(id);
         }
 
         [HttpPost]
-        public void Create([FromBody] Song value)
+        public void Create([FromBody] Genre value)
         {
             this.logic.Create(value);
         }
 
         [HttpPut]
-        public void Uptade([FromBody] Song value)
+        public void Uptade([FromBody] Genre value)
         {
             this.logic.Update(value);
         }
