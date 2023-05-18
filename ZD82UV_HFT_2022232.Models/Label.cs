@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Text.Json.Serialization;
 
 namespace ZD82UV_HFT_2022232.Models
 {
@@ -19,6 +20,7 @@ namespace ZD82UV_HFT_2022232.Models
         public string LabelName { get; set;}
 
         [NotMapped]
+        [JsonIgnore]
         public virtual ICollection<Song> Songs { get; set;}
 
 
