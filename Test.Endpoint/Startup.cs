@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Emit;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -14,7 +15,7 @@ using ZD82UV_HFT_2022232.Logic;
 using ZD82UV_HFT_2022232.Models;
 using ZD82UV_HFT_2022232.Repository;
 
-namespace ZD82UV_HFT_2022232.Endpoint
+namespace Test.Endpoint
 {
     public class Startup
     {
@@ -33,18 +34,17 @@ namespace ZD82UV_HFT_2022232.Endpoint
             services.AddTransient<IRepository<Song>, SongRepository>();
             services.AddTransient<IRepository<Genre>, GenreRepository>();
             services.AddTransient<IRepository<Band>, BandRepository>();
-            services.AddTransient<IRepository<Label>, LabelRepository>();
+            services.AddTransient<IRepository<ZD82UV_HFT_2022232.Models.Label>, LabelRepository>();
 
             services.AddTransient<ISongLogic, SongLogic>();
             services.AddTransient<IGenreLogic, GenreLogic>();
             services.AddTransient<IBandLogic, BandLogic>();
             services.AddTransient<ILabelLogic, LabelLogic>();
 
-
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "ZD82UV_HFT_2022232.Endpoint", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Test.Endpoint", Version = "v1" });
             });
         }
 
@@ -55,7 +55,7 @@ namespace ZD82UV_HFT_2022232.Endpoint
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "ZD82UV_HFT_2022232.Endpoint v1"));
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Test.Endpoint v1"));
             }
 
             app.UseRouting();
