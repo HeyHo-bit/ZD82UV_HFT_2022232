@@ -31,7 +31,6 @@ namespace ZD82UV_HFT_2022232.Models
         public virtual Label Label { get; set; }
 
         [NotMapped]
-        [JsonIgnore]
         public virtual ICollection<Genre> Genres { get; set; }
         
         [NotMapped]
