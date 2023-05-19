@@ -14,12 +14,14 @@ namespace ZD82UV_HFT_2022232.Test
     {
         SongLogic songlogic;
         GenreLogic genreLogic;
+        Mock<IRepository<Song>> mockSongRepository;
+        Mock<IRepository<Genre>> mockGenreRepository;
 
         [SetUp]
         public void Init()
         {
-            var mockGenreRepository = new Mock<IRepository<Genre>>();
-            var mockSongRepository = new Mock<IRepository<Song>>();
+             mockGenreRepository = new Mock<IRepository<Genre>>();
+             mockSongRepository = new Mock<IRepository<Song>>();
 
             var song = new List<Song>()
             {
@@ -36,8 +38,96 @@ namespace ZD82UV_HFT_2022232.Test
 
             }.AsQueryable();
 
+
             songlogic = new SongLogic(mockSongRepository.Object);
             genreLogic = new GenreLogic(mockGenreRepository.Object);
+        }
+
+        [Test]
+        public void ReadTest()
+        {
+            var song = new Song() { SongId = 1 };
+            //ACT
+            try
+            {
+                //ACT
+                songlogic.Read(song.SongId);
+            }
+            catch
+            {
+
+            }
+
+
+            //ASSERT
+            mockSongRepository.Verify(r => r.Read(song.SongId), Times.Once);
+        }
+        [Test]
+        public void DeleteTest()
+        {
+            var song = new Song() { SongId = 1 };
+            //ACT
+            try
+            {
+                //ACT
+                songlogic.Delete(song.SongId);
+            }
+            catch
+            {
+
+            }
+
+
+            //ASSERT
+            mockSongRepository.Verify(r => r.Delete(song.SongId), Times.Once);
+        }
+
+        [Test]
+        public void CreateSongTestWithCorrectTitle()
+        {
+            var song = new Song() { SongTitle = "Gladiator" };
+
+            //ACT
+            songlogic.Create(song);
+
+            //ASSERT
+            mockSongRepository.Verify(r => r.Create(song), Times.Once);
+        }
+        [Test]
+        public void CreateSongTestWithinCorrectID()
+        {
+            var song = new Song() { SongId = 1 };
+
+            try
+            {
+                //ACT
+                songlogic.Create(song);
+            }
+            catch
+            {
+
+            }
+
+            //ASSERT
+            mockSongRepository.Verify(r => r.Create(song), Times.Never);
+        }
+
+        [Test]
+        public void CreateSongTestWithInCorrectTitle()
+        {
+            var song = new Song() { SongTitle = "8" };
+            try
+            {
+                //ACT
+                songlogic.Create(song);
+            }
+            catch
+            {
+
+            }
+
+            //ASSERT
+            mockSongRepository.Verify(r => r.Create(song), Times.Never);
         }
 
         [Test]
@@ -47,7 +137,19 @@ namespace ZD82UV_HFT_2022232.Test
             var result = songlogic.BestSong();
 
             //ASSERT
-            Assert.That(result, Is.Not.Null);
+            Assert.That(result, Is.EqualTo(songlogic.ReadAll()));
+            ;
+        }
+
+        [Test]
+        public void LabelRevenu()
+        {
+            //Act
+            var result = songlogic.LabelRevenu().ToList();
+            
+            //ASSERT
+            Assert.That(result, Is.EqualTo(songlogic.ReadAll()));
+
         }
     }
 

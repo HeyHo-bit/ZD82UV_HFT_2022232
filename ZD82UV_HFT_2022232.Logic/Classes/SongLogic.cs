@@ -105,6 +105,12 @@ namespace ZD82UV_HFT_2022232.Logic
             return bestsong;
         }
 
+
+        //public double GetAVG()
+        //{
+        //    return SongRepository.ReadAll().Average(x => x.Income);
+        //}
+
     }
 
     public class BestSo
