@@ -13,8 +13,10 @@ namespace ZD82UV_HFT_2022232.Test
     public class SongLogicTester
     {
         SongLogic songlogic;
+        SongLogic songlogic2;
         GenreLogic genreLogic;
         Mock<IRepository<Song>> mockSongRepository;
+        Mock<IRepository<Song>> mockSongRepository2;
         Mock<IRepository<Genre>> mockGenreRepository;
 
         [SetUp]
@@ -22,13 +24,15 @@ namespace ZD82UV_HFT_2022232.Test
         {
              mockGenreRepository = new Mock<IRepository<Genre>>();
              mockSongRepository = new Mock<IRepository<Song>>();
+             mockSongRepository2 = new Mock<IRepository<Song>>();
 
             var song = new List<Song>()
             {
-                new Song { SongId = 1, SongTitle = "Test1",ReleaseDate =  DateTime.Today,  Album = "testAlbum1", LabelId = 1,Income =100 ,Rating = 1},
+                new Song { SongId = 1, SongTitle = "Test1",ReleaseDate =  new DateTime(2001, 04, 1),  Album = "testAlbum1", LabelId = 1,Income =100 ,Rating = 1},
                 new Song { SongId = 2, SongTitle = "Test2",ReleaseDate = new DateTime(2000, 1, 1),  Album = "TestAlbum2", LabelId = 2, Income = 200, Rating = 2},
 
             }.AsQueryable();
+            songlogic = new SongLogic(mockSongRepository.Object);
 
             var genre = new List<Genre>()
             {
@@ -38,9 +42,16 @@ namespace ZD82UV_HFT_2022232.Test
 
             }.AsQueryable();
 
+            mockSongRepository2.Setup(m => m.ReadAll()).Returns(new List<Song>()
+                            {
+                new Song { SongId = 4, SongTitle = "Test1",ReleaseDate =  new DateTime(2001, 04, 1),  Album = "testAlbum1", LabelId = 1,Income =100 ,Rating = 1},
+                new Song { SongId = 5, SongTitle = "Test2",ReleaseDate = new DateTime(2000, 1, 1),  Album = "TestAlbum2", LabelId = 2, Income = 200, Rating = 2},
 
-            songlogic = new SongLogic(mockSongRepository.Object);
+            }.AsQueryable());
+            songlogic2 = new SongLogic(mockSongRepository2.Object);
+
             genreLogic = new GenreLogic(mockGenreRepository.Object);
+
         }
 
         [Test]
@@ -65,7 +76,7 @@ namespace ZD82UV_HFT_2022232.Test
         [Test]
         public void DeleteTest()
         {
-            var song = new Song() { SongId = 1 };
+            var song = new Song() { SongId = 3 };
             //ACT
             try
             {
@@ -151,6 +162,51 @@ namespace ZD82UV_HFT_2022232.Test
             Assert.That(result, Is.EqualTo(songlogic.ReadAll()));
 
         }
+        [Test]
+        public void TopLabel()
+        {
+            //Act
+            var result = songlogic.TopLabel().ToList();
+
+            //ASSERT
+            Assert.That(result, Is.EqualTo(songlogic.ReadAll()));
+
+        }
+
+        [Test]
+        public void YearStatisticsTest()
+        {
+            var actual = songlogic2.YearStatistics().ToList();
+            var expected = new List<YearInfo>()
+            {
+                new YearInfo()
+                {
+                    Year = 2001,
+                    AvgRating = 1,
+                    SongNumber = 1
+                },
+                new YearInfo()
+                {
+                    Year = 2000,
+                    AvgRating = 2,
+                    SongNumber = 1
+                },
+            };
+            
+            Assert.AreEqual(expected, actual);
+        }
+
+        [Test]
+        public void MostSong()
+        {
+            //Act
+            var result = genreLogic.MostSong().ToList();
+
+            //ASSERT
+            Assert.That(result, Is.EqualTo(genreLogic.ReadAll()));
+
+        }
+
     }
 
 

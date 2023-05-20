@@ -144,6 +144,25 @@ namespace ZD82UV_HFT_2022232.Logic
         public int Year { get; set; }
         public double AvgRating { get; set; }
         public int SongNumber { get; set; }
+
+        public override bool Equals(object obj)
+        {
+            YearInfo b = obj as YearInfo;
+            if (b == null)
+            {
+                return false;
+            }
+            else
+            {
+                return this.Year == b.Year
+                    && this.AvgRating == b.AvgRating
+                    && this.SongNumber == b.SongNumber;
+            }
+        }
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(this.Year, this.AvgRating, this.SongNumber);
+        }
     }
 
     public class LabelReve
