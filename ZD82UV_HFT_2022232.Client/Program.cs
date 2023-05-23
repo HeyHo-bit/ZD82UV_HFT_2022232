@@ -12,6 +12,46 @@ namespace ZD82UV_HFT_2022232.Client
     {
         static RestService rest;
 
+        static void NonCrud(string entity)
+        {
+
+            if (entity == "Stat/BestSong")
+            {
+                Console.WriteLine("Legjobb szám:");
+                var bestsong = rest.Get<Song>("Stat/BestSong");
+                foreach (var item in bestsong)
+                {
+                    Console.WriteLine(item.SongTitle + item.Label);
+                    ;
+                }
+
+            }
+
+
+            Console.ReadLine();
+           
+
+
+
+            //List<Song> yearstat = rest.Get<Song>("/Stat/YearStatistics");
+            //Console.WriteLine(yearstat);
+
+            //var bestsong = rest.Get<Song>("/Stat/BestSong");
+            //foreach (var item in mostsong)
+            //    {
+            //        Console.WriteLine(item);
+            //    }
+
+
+        }
+
+        static void LabelRevenu(string entity)
+        {
+            var revenu = rest.Get<Song>("stat/labelRevenu");
+            Console.WriteLine( revenu.ToArray());
+            ;
+        }
+
         static void Create(string entity)
         {
             if (entity == "Band")
@@ -48,9 +88,10 @@ namespace ZD82UV_HFT_2022232.Client
                 foreach (var item in bands)
                 {
                     Console.WriteLine(item.BandId + ": " + item.BandName);
+                    ;
                 }
             }
-            Console.ReadLine();
+            //Console.ReadLine();
 
             if (entity == "Genre")
             {
@@ -60,7 +101,7 @@ namespace ZD82UV_HFT_2022232.Client
                     Console.WriteLine(item.GenreId + ": " + item.GenreKind);
                 }
             }
-            Console.ReadLine();
+            //Console.ReadLine();
 
             if (entity == "Label")
             {
@@ -70,7 +111,7 @@ namespace ZD82UV_HFT_2022232.Client
                     Console.WriteLine(item.LabelId + ": " + item.LabelName);
                 }
             }
-            Console.ReadLine();
+            //Console.ReadLine();
 
             if (entity == "Song")
             {
@@ -183,6 +224,8 @@ namespace ZD82UV_HFT_2022232.Client
                 .Add("Create", () => Create("Song"))
                 .Add("Delete", () => Delete("Song"))
                 .Add("Update", () => Update("Song"))
+                .Add("Non-crud", () => NonCrud("Stat/BestSong"))
+                .Add("LabelRevenu", ()=> LabelRevenu("Stat/BestSong"))
                 .Add("Exit", ConsoleMenu.Close);
 
 

@@ -7,7 +7,7 @@ using ZD82UV_HFT_2022232.Models;
 
 namespace ZD82UV_HFT_2022232.Endpoint.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class LabelController : ControllerBase
     {
