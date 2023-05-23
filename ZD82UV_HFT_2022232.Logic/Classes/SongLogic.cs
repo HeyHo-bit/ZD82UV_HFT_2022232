@@ -100,7 +100,7 @@ namespace ZD82UV_HFT_2022232.Logic
                            {
                                SongName = grp.Key,
                                SongCount = grp.Count(),
-                               Revenu = grp.Max(c => c.Rating)
+                               Rate = grp.Max(c => c.Rating)
                            };
             return bestsong;
         }
@@ -113,7 +113,7 @@ namespace ZD82UV_HFT_2022232.Logic
 
     }
 
-    public class BestSo
+      public class BestSo
     {
         public BestSo()
         {
@@ -121,7 +121,7 @@ namespace ZD82UV_HFT_2022232.Logic
 
         public string SongName { get; set; }
         public int SongCount { get; set; }
-        public int Revenu { get; set; }
+        public int Rate { get; set; }
     }
 
     public class Topla

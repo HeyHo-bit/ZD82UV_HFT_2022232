@@ -10,49 +10,63 @@ namespace ZD82UV_HFT_2022232.Client
 {
     internal class Program
     {
+
         static RestService rest;
 
-        static void NonCrud(string entity)
+        static void BestSong()
         {
-
-            if (entity == "Stat/BestSong")
-            {
                 Console.WriteLine("Legjobb szám:");
-                var bestsong = rest.Get<Song>("Stat/BestSong");
-                foreach (var item in bestsong)
+                List<Retrive.BestSo> bestsong = rest.Get<Retrive.BestSo>("/stat/bestsong");
+                Console.WriteLine(bestsong.First().SongName);
+       
+            Console.ReadLine();
+
+        }
+
+        static void LabelRevenu()
+        {
+            var revenu = rest.Get<Retrive.LabelReve>("/stat/labelrevenu");
+            foreach (var item in revenu) 
+            {
+                Console.WriteLine(item.LabelName + ":"+ item.SongCount + " " + item.Revenu);
+            }
+            Console.ReadLine();
+            
+        }
+
+        static void MostSong()
+        {
+            var mostsong = rest.Get<Retrive.BestSo>("/stat/bestsong");
+            Console.WriteLine(mostsong.First().SongCount + " : " + mostsong.First().SongName);
+            Console.ReadLine();
+        }
+        static void YearStat()
+        {
+            Console.WriteLine("Add meg egy évet:");
+            int yearid = int.Parse(Console.ReadLine());
+
+            List<Retrive.YearInfo> yearstat = rest.Get<Retrive.YearInfo>("/Stat/YearStatistics");
+            foreach (var item in yearstat)
+            {
+                if (item.Year == yearid)
                 {
-                    Console.WriteLine(item.SongTitle + item.Label);
+                    Console.WriteLine( item.Year +", Number of songs: "+ item.SongNumber + ", Avarage rating: " + item.AvgRating );
                     ;
                 }
-
             }
+            Console.ReadLine();
+        }
 
+        static void TopLabel()
+        {
+            var toplabel = rest.Get<Retrive.Topla>("/Stat/TopLabel");
+            Console.WriteLine("Top Label name:" + toplabel.First().LabelName + "SongCount" + toplabel.First().SongCount + "Revenu" + toplabel.First().Revenu);
 
             Console.ReadLine();
-           
-
-
-
-            //List<Song> yearstat = rest.Get<Song>("/Stat/YearStatistics");
-            //Console.WriteLine(yearstat);
-
-            //var bestsong = rest.Get<Song>("/Stat/BestSong");
-            //foreach (var item in mostsong)
-            //    {
-            //        Console.WriteLine(item);
-            //    }
-
-
         }
 
-        static void LabelRevenu(string entity)
-        {
-            var revenu = rest.Get<Song>("stat/labelRevenu");
-            Console.WriteLine( revenu.ToArray());
-            ;
-        }
 
-        static void Create(string entity)
+            static void Create(string entity)
         {
             if (entity == "Band")
             {
@@ -224,16 +238,22 @@ namespace ZD82UV_HFT_2022232.Client
                 .Add("Create", () => Create("Song"))
                 .Add("Delete", () => Delete("Song"))
                 .Add("Update", () => Update("Song"))
-                .Add("Non-crud", () => NonCrud("Stat/BestSong"))
-                .Add("LabelRevenu", ()=> LabelRevenu("Stat/BestSong"))
                 .Add("Exit", ConsoleMenu.Close);
 
+            var noncrudSubMenu = new ConsoleMenu(args, level: 1)
+                .Add("BestSong", () => BestSong())
+                .Add("LabelRevenu", () => LabelRevenu())
+                .Add("MostSong", () => MostSong())
+                .Add("YearStatistic", () => YearStat())
+                .Add("TopLabel", () => TopLabel());
+                
 
             var menu = new ConsoleMenu(args, level: 0)
                 .Add("Songs", () => songSubMenu.Show())
                 .Add("Bands", () => bandSubMenu.Show())
                 .Add("Genres", () => genreSubMenu.Show())
                 .Add("Labels", () => labelSubMenu.Show())
+                .Add("Non-Crud", () => noncrudSubMenu.Show())
                 .Add("Exit", ConsoleMenu.Close);
 
             menu.Show();

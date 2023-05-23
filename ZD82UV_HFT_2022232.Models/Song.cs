@@ -37,4 +37,5 @@ namespace ZD82UV_HFT_2022232.Models
         [JsonIgnore]
         public virtual ICollection<Band> Bands { get; set; }
     }
+
 }
