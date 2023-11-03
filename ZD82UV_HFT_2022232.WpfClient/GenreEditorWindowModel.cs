@@ -2,20 +2,18 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
-using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Input;
-using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Input;
+using System.Windows.Input;
+using System.Windows;
 using ZD82UV_HFT_2022232.Models;
+using Microsoft.Toolkit.Mvvm.ComponentModel;
 
 namespace ZD82UV_HFT_2022232.WpfClient
 {
-    internal class MainWindowViewModel : ObservableRecipient
+    internal class GenreEditorWindowModel: ObservableRecipient
     {
-    
         private string errorMessage;
 
         public string ErrorMessage
@@ -23,33 +21,33 @@ namespace ZD82UV_HFT_2022232.WpfClient
             get { return errorMessage; }
             set { SetProperty(ref errorMessage, value); }
         }
-        public RestCollection<Song> Songs { get; set; }
+        public RestCollection<Genre> Genres { get; set; }
 
-        private Song selectedSong;
+        private Genre selectedGenre;
 
-        public Song SelectedSong
+        public Genre SelectedGenre
         {
-            get { return selectedSong; }
+            get { return selectedGenre; }
             set
             {
                 if (value != null)
                 {
-                    selectedSong = new Song()
+                    selectedGenre = new Genre()
                     {
-                        SongTitle = value.SongTitle,
-                        SongId = value.SongId
+                        GenreKind = value.GenreKind,
+                        GenreId = value.GenreId
                     };
                     OnPropertyChanged();
-                    (DeleteSongCommand as RelayCommand).NotifyCanExecuteChanged();
+                    (DeleteGenreCommand as RelayCommand).NotifyCanExecuteChanged();
                 }
             }
         }
 
-        public ICommand CreateSongCommand { get; set; }
+        public ICommand CreateGenreCommand { get; set; }
 
-        public ICommand DeleteSongCommand { get; set; }
+        public ICommand DeleteGenreCommand { get; set; }
 
-        public ICommand UpdateSongCommand { get; set; }
+        public ICommand UpdateGenreCommand { get; set; }
 
         public ICommand OpendWindow { get; set; }
         public ICommand OpendWindowBand { get; set; }
@@ -66,24 +64,24 @@ namespace ZD82UV_HFT_2022232.WpfClient
         }
 
 
-        public MainWindowViewModel()
+        public GenreEditorWindowModel()
         {
             if (!IsInDesignMode)
             {
-                Songs = new RestCollection<Song>("http://localhost:4273/", "song", "hub");
-                CreateSongCommand = new RelayCommand(() =>
+                Genres = new RestCollection<Genre>("http://localhost:4273/", "Genre", "hub");
+                CreateGenreCommand = new RelayCommand(() =>
                 {
-                    Songs.Add(new Song()
+                    Genres.Add(new Genre()
                     {
-                        SongTitle = SelectedSong.SongTitle
+                        GenreKind = SelectedGenre.GenreKind
                     });
                 });
 
-                UpdateSongCommand = new RelayCommand(() =>
+                UpdateGenreCommand = new RelayCommand(() =>
                 {
                     try
                     {
-                        Songs.Update(SelectedSong);
+                        Genres.Update(SelectedGenre);
                     }
                     catch (ArgumentException ex)
                     {
@@ -92,15 +90,15 @@ namespace ZD82UV_HFT_2022232.WpfClient
 
                 });
 
-                DeleteSongCommand = new RelayCommand(() =>
+                DeleteGenreCommand = new RelayCommand(() =>
                 {
-                    Songs.Delete(SelectedSong.SongId);
+                    Genres.Delete(SelectedGenre.GenreId);
                 },
                 () =>
                 {
-                    return SelectedSong != null;
+                    return SelectedGenre != null;
                 });
-                SelectedSong = new Song();
+                SelectedGenre = new Genre();
 
                 OpendWindow = new RelayCommand(() =>
                 {
@@ -111,10 +109,9 @@ namespace ZD82UV_HFT_2022232.WpfClient
                 {
                     new BandEditor().ShowDialog();
                 });
-                OpendWindowGenre = new RelayCommand(() =>
-                {
-                    new GenreEditorWindow().ShowDialog();
-                }); 
+
+
+
                 OpendWindowLabel = new RelayCommand(() =>
                 {
                     new LabelEditorWindowxaml().ShowDialog();
@@ -122,6 +119,5 @@ namespace ZD82UV_HFT_2022232.WpfClient
             }
 
         }
-    
     }
 }

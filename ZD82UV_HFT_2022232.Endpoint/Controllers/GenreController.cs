@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
+using ZD82UV_HFT_2022232.Endpoint.Services;
 using ZD82UV_HFT_2022232.Logic;
 using ZD82UV_HFT_2022232.Models;
 
@@ -12,10 +14,12 @@ namespace ZD82UV_HFT_2022232.Endpoint.Controllers
     public class GenreController : ControllerBase
     {
         IGenreLogic logic;
+        IHubContext<SignalRHub> hub;
 
-        public GenreController(IGenreLogic logic)
+        public GenreController(IGenreLogic logic, IHubContext<SignalRHub> hub)
         {
             this.logic = logic;
+            this.hub = hub;
         }
 
         [HttpGet]
@@ -34,19 +38,23 @@ namespace ZD82UV_HFT_2022232.Endpoint.Controllers
         public void Create([FromBody] Genre value)
         {
             this.logic.Create(value);
+            this.hub.Clients.All.SendAsync("GenreCreated", value);
         }
 
         [HttpPut]
         public void Uptade([FromBody] Genre value)
         {
             this.logic.Update(value);
+            this.hub.Clients.All.SendAsync("GenreUpdated", value);
         }
 
 
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
+            var genreToDelete = this.logic.Read(id);
             this.logic.Delete(id);
+            this.hub.Clients.All.SendAsync("GenreDeleted", genreToDelete);
         }
     }
 }

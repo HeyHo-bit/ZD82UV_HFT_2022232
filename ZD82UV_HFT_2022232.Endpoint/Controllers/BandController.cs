@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
+using ZD82UV_HFT_2022232.Endpoint.Services;
 using ZD82UV_HFT_2022232.Logic;
 using ZD82UV_HFT_2022232.Models;
 
@@ -12,10 +14,12 @@ namespace ZD82UV_HFT_2022232.Endpoint.Controllers
     public class BandController : ControllerBase
     {
         IBandLogic logic;
+        IHubContext<SignalRHub> hub;
 
-        public BandController(IBandLogic logic)
+        public BandController(IBandLogic logic, IHubContext<SignalRHub> hub)
         {
             this.logic = logic;
+            this.hub = hub;
         }
 
         [HttpGet]
@@ -34,19 +38,23 @@ namespace ZD82UV_HFT_2022232.Endpoint.Controllers
         public void Create([FromBody] Band value)
         {
             this.logic.Create(value);
+            this.hub.Clients.All.SendAsync("BandCreated", value);
         }
 
         [HttpPut]
         public void Uptade([FromBody] Band value)
         {
             this.logic.Update(value);
+            this.hub.Clients.All.SendAsync("BandUptaded", value);
         }
 
 
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
+            var bandToDelete = this.logic.Read(id);
             this.logic.Delete(id);
+            this.hub.Clients.All.SendAsync("BandDeleted", bandToDelete);
         }
     }
 }

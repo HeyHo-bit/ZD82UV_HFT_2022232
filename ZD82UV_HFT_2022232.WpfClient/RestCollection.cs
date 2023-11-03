@@ -140,6 +140,22 @@ namespace ZD82UV_HFT_2022232.WpfClient
             return item;
         }
 
+        public List<T> GetCollection<T>(string param, string endpoint)
+        {
+            List<T> items = new List<T>();
+            HttpResponseMessage response = client.GetAsync(endpoint + "?name=" + param).GetAwaiter().GetResult();
+            if (response.IsSuccessStatusCode)
+            {
+                items = response.Content.ReadAsAsync<List<T>>().GetAwaiter().GetResult();
+            }
+            else
+            {
+                var error = response.Content.ReadAsAsync<RestExceptionInfo>().GetAwaiter().GetResult();
+                throw new ArgumentException(error.Msg);
+            }
+            return items;
+        }
+
         public T Get<T>(int id, string endpoint)
         {
             T item = default(T);

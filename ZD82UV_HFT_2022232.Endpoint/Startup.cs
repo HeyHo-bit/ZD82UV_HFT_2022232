@@ -10,6 +10,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using ZD82UV_HFT_2022232.Endpoint.Services;
 using ZD82UV_HFT_2022232.Logic;
 using ZD82UV_HFT_2022232.Models;
 using ZD82UV_HFT_2022232.Repository;
@@ -40,6 +41,7 @@ namespace ZD82UV_HFT_2022232.Endpoint
             services.AddTransient<IBandLogic, BandLogic>();
             services.AddTransient<ILabelLogic, LabelLogic>();
 
+            services.AddSignalR();
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
@@ -65,6 +67,7 @@ namespace ZD82UV_HFT_2022232.Endpoint
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                endpoints.MapHub<SignalRHub>("/hub");
             });
         }
     }

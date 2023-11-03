@@ -10,24 +10,18 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace ZD82UV_HFT_2022232.WpfClient
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for LabelEditorWindowxaml.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class LabelEditorWindowxaml : Window
     {
-        public MainWindow()
+        public LabelEditorWindowxaml()
         {
             InitializeComponent();
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-
         }
     }
 }

@@ -17,7 +17,7 @@ namespace ZD82UV_HFT_2022232.Client
         {
                 Console.WriteLine("Legjobb szám:");
                 List<Retrive.BestSo> bestsong = rest.Get<Retrive.BestSo>("/stat/bestsong");
-                Console.WriteLine(bestsong.First().SongName);
+            Console.WriteLine(bestsong.First().SongName);
        
             Console.ReadLine();
 
