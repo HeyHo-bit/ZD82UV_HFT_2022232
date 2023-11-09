@@ -19,7 +19,7 @@ function setupSignalR() {
         getdata();
     });
 
-    connection.on("songUpdated", (user, message) => {
+    connection.on("SongUpdated", (user, message) => {
         getdata();
     });
 
@@ -60,8 +60,8 @@ function display() {
             + t.songId + "</td><td>"
             + t.songTitle + "</td><td>"
             + t.releaseDate + "</td><td>"
-            + t.income+ "M" + "</td><td>"
-            + t.rating +"/5"+ "</td><td>"
+            + t.income/*+ "M"*/ + "</td><td>"
+            + t.rating +/*"/5"+*/ "</td><td>"
         + `<button type="button" onclick="showupdate(${t.songId})">Update</button>`
         + `<button type="button" onclick="remove(${t.songId})">Delete</button>` +
             "</td></tr>";
@@ -96,32 +96,32 @@ function create() {
 }
 
 function showupdate(id) {
-    document.getElementById('nameToUpdate').value = songs.find(t => t['songID'] == id)['name'];
-    document.getElementById('birthdayToUpdate').value = songs.find(t => t['songID'] == id)['birthday'];
-    document.getElementById('nationalityToUpdate').value = songs.find(t => t['songID'] == id)['nationality'];
-    document.getElementById('grammyToUpdate').value = songs.find(t => t['songID'] == id)['grammy'];
+    document.getElementById('titleToUpdate').value = songs.find(t => t['songId'] == id)['songTitle'];
+    //document.getElementById('releasedateToUpdate').value = songs.find(t => t['songId'] == id)['releaseDate'];
+    //document.getElementById('incomeToUpdate').value = songs.find(t => t['songId'] == id)['income'];
+    //document.getElementById('ratingToUpdate').value = songs.find(t => t['songId'] == id)['rating'];
     document.getElementById('updateformdiv').style.display = 'flex';
     songIdToUpdate = id;
 }
 
 function update() {
     document.getElementById('updateformdiv').style.display = 'none';
-    let name = document.getElementById('nameToUpdate').value;
-    let name2 = document.getElementById('birthdayToUpdate').value;
-    let name3 = document.getElementById('nationalityToUpdate').value;
-    let name4 = (document.getElementById('grammyToUpdate').value === 'false');
-    console.log(name4);
+    let name = document.getElementById('titleToUpdate').value;
+    //let name2 = document.getElementById('releasedateToUpdate').value;
+    //let name3 = document.getElementById('incomeToUpdate').value;
+    //let name4 = document.getElementById('ratingToUpdate').value;
+
 
     fetch('http://localhost:4273/Song/', {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(
             {
-                songID: songIdToUpdate,
+                songId: songIdToUpdate,
                 songTitle: name,
-                releasedate: name2,
-                income: name3,
-                rating: name4
+                //releasedate: name2,
+                //income: name3,
+                //rating: name4
             })
     })
         .then(response => response)
