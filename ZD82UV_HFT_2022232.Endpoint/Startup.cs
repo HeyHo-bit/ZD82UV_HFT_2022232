@@ -59,6 +59,11 @@ namespace ZD82UV_HFT_2022232.Endpoint
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "ZD82UV_HFT_2022232.Endpoint v1"));
             }
+            app.UseCors(x => x
+               .AllowCredentials()
+               .AllowAnyMethod()
+               .AllowAnyHeader()
+               .WithOrigins("http://localhost:52005"));
 
             app.UseRouting();
 

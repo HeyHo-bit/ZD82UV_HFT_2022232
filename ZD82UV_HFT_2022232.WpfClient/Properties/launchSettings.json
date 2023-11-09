@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "ZD82UV_HFT_2022232.WpfClient": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:56093;http://localhost:56099"
+    }
+  }
+}

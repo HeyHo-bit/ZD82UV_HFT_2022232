@@ -1,0 +1,54 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Songs To listen</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+</head>
+<body style="background-color:lightgreen;">
+    <form action="tracks.html" method="get" target="_blank">
+        <button type="submit">Track window</button>
+    </form>
+    <form action="albums.html" method="get" target="_blank">
+        <button type="submit">Album Window</button>
+    </form>
+    <h1>List of Songs to Listen</h1>
+    <div id="formdiv">
+        <label>Title</label>
+        <input type="text" id="titleToCreate" />
+        <label>ReleaseDate</label>
+        <input type="datetime" id="releasedateToCreate" />
+        <label>Income</label>
+        <input type="text" id="incomeToCreate" />
+        <label>Rating</label>
+        <input type="text" id="ratingToCreate" />
+        <button type="button" onclick="create()">Add Song</button>
+    </div>
+    <div id="updateformdiv">
+        <label>Name</label>
+        <input type="text" id="nameToUpdate" />
+        <label>Birthday</label>
+        <input type="datetime" id="birthdayToUpdate" />
+        <label>Nationality</label>
+        <input type="text" id="nationalityToUpdate" />
+        <label>Do they have a grammy ?</label>
+        <input type="checkbox" id="grammyToUpdate" />
+        <button type="button" onclick="update()">Update Song</button>
+    </div>
+    <table>
+        <thead>
+            <tr>
+                <th>SongId</th>
+                <th>SongTitle</th>
+                <th>ReleaseDate</th>
+                <th>Income</th>
+                <th>Rating</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody id="resultarea"></tbody>
+    </table>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/6.0.1/signalr.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

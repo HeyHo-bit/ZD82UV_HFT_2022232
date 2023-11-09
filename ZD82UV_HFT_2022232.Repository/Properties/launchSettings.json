@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "ZD82UV_HFT_2022232.Repository": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:56095;http://localhost:56103"
+    }
+  }
+}
