@@ -142,7 +142,7 @@ function displayMostyear() {
         document.getElementById('resultarea').innerHTML +=
             "<tr><td>"
             + t.year + "</td><td>"
-            + t.avgRating +"/5" + "</td><td>"
+            + t.avgRating + "/5" + "</td><td>"
             + t.songNumber + " song(s)" + "</td><td>"
         "</td></tr>";
     });
@@ -173,7 +173,7 @@ function displayMostSong() {
             "<tr><td>"
             + "Most Song:" + "</td><td>"
             + t.songName + "</td><td>"
-        + t.songNumber + " song(s)" + "</td><td>";
+            + t.songNumber + " song(s)" + "</td><td>";
     });
 }
 
@@ -184,7 +184,7 @@ function displayToplabel() {
             "<tr><td>"
             + "Top Label:" + "</td><td>"
             + t.labelName + "</td><td>"
-        + t.songCount + " song(s)" + "</td><td>"
+            + t.songCount + " song(s)" + "</td><td>"
             + t.revenu + "M" + "</td><td>";
     });
 }
@@ -196,7 +196,7 @@ function displayBest() {
             "<tr><td>"
             + "Best Song:" + "</td><td>"
             + t.songName + "</td><td>"
-        + t.songCount + " song(s)" + "</td><td>"
+            + t.songCount + " song(s)" + "</td><td>"
             + t.rate + "/5" + "</td><td>";
     });
 }
