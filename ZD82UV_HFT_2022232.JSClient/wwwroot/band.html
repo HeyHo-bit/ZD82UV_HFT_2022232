@@ -1,0 +1,42 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Bands</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+</head>
+<body style="background: linear-gradient(to top right, #00ff99 0%, #ff00ff 100%)">
+    <form action="index.html" method="get" target="_blank">
+        <button type="submit">Song window</button>
+    </form>
+    <form action="Genre.html" method="get" target="_blank">
+        <button type="submit">Genre Window</button>
+    </form>
+    <form action="label.html" method="get" target="_blank">
+        <button type="submit">Label Window</button>
+    </form>
+    <h1>List of bands to Listen</h1>
+    <div id="formdiv">
+        <label>Name</label>
+        <input type="text" id="titleToCreate" />  
+        <button type="button" onclick="create()">Add band</button>
+    </div>
+    <div id="updateformdiv">
+        <label>Name</label>
+        <input type="text" id="titleToUpdate" />
+        <button type="button" onclick="update()">Update band</button>
+    </div>
+    <table>
+        <thead>
+            <tr>
+                <th>bandId</th>
+                <th>bandName</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody id="resultarea"></tbody>
+    </table>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/6.0.1/signalr.js"></script>
+    <script src="band.js"></script>
+</body>
+</html>

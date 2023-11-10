@@ -1,0 +1,42 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>genres To listen</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+</head>
+<body style="background: linear-gradient(to top left, #90ee90 37%, #00ccff 100%) ">
+    <form action="band.html" method="get" target="_blank">
+        <button type="submit">Band window</button>
+    </form>
+    <form action="index.html" method="get" target="_blank">
+        <button type="submit">Song window</button>
+    </form>
+    <form action="label.html" method="get" target="_blank">
+        <button type="submit">Label Window</button>
+    </form>
+    <h1>List of Genres to Listen</h1>
+    <div id="formdiv">
+        <label>Genre</label>
+        <input type="text" id="titleToCreate" />
+        <button type="button" onclick="create()">Add genre</button>
+    </div>
+    <div id="updateformdiv">
+        <label>Genre</label>
+        <input type="text" id="titleToUpdate" />
+        <button type="button" onclick="update()">Update genre</button>
+    </div>
+    <table>
+        <thead>
+            <tr>
+                <th>genreId</th>
+                <th>GenreKind</th>
+
+            </tr>
+        </thead>
+        <tbody id="resultarea"></tbody>
+    </table>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/6.0.1/signalr.js"></script>
+    <script src="genre.js"></script>
+</body>
+</html>

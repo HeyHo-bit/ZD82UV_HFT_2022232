@@ -1,0 +1,38 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Non-cruds</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+</head>
+<body style="background: linear-gradient(to top, #90ee90 37%, #000000 100%) ">
+    <form action="band.html" method="get" target="_blank">
+        <button type="submit">Band window</button>
+    </form>
+    <form action="Genre.html" method="get" target="_blank">
+        <button type="submit">Genre Window</button>
+    </form>
+    <form action="label.html" method="get" target="_blank">
+        <button type="submit">Label Window</button>
+    </form>
+    <h1>List of Non-Cruds</h1>
+    <div id="formdiv">
+        <label>Give A Year</label>
+        <!--<input type="text" id="yearStat" />-->
+        <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a name">
+        <button type="button" onclick="displayMostyear()">Year Stat</button>
+        <button type="button" onclick="displayLabelRevenu()">Labeles Revenus</button>
+        <button type="button" onclick="displayBest()">Best Song</button>
+        <button type="button" onclick="displayToplabel()">Top Label</button>
+        <button type="button" onclick="displayMostSong()">Most Song</button>
+    </div>
+    <table>
+        <thead>
+
+        </thead>
+        <tbody id="resultarea"></tbody>
+    </table>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/6.0.1/signalr.js"></script>
+    <script src="noncrud.js"></script>
+</body>
+</html>

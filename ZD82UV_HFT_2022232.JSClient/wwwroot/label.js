@@ -1,6 +1,7 @@
-﻿let songs = [];
+﻿let labels = [];
+let stats = [];
 let connection = null;
-let songIdToUpdate = -1;
+let labelIdToUpdate = -1;
 
 getdata();
 setupSignalR();
@@ -11,15 +12,15 @@ function setupSignalR() {
         .configureLogging(signalR.LogLevel.Information)
         .build();
 
-    connection.on("songCreated", (user, message) => {
+    connection.on("labelCreated", (user, message) => {
         getdata();
     });
 
-    connection.on("songDeleted", (user, message) => {
+    connection.on("labelDeleted", (user, message) => {
         getdata();
     });
 
-    connection.on("SongUpdated", (user, message) => {
+    connection.on("labelUpdated", (user, message) => {
         getdata();
     });
 
@@ -41,27 +42,24 @@ async function start() {
 };
 
 async function getdata() {
-    await fetch('http://localhost:4273/Song')
+    await fetch('http://localhost:4273/label')
         .then(x => x.json())
         .then(y => {
-            songs = y;
-            console.log(songs);
+            labels = y;
+            console.log(labels);
             display();
         });
 }
 
 function display() {
     document.getElementById('resultarea').innerHTML = "";
-    songs.forEach(t => {
+    labels.forEach(t => {
         document.getElementById('resultarea').innerHTML +=
             "<tr><td>"
-            + t.songId + "</td><td>"
-            + t.songTitle + "</td><td>"
-            + t.releaseDate + "</td><td>"
-            + t.income+ "M" + "</td><td>"
-            + t.rating +"/5"+ "</td><td>"
-        + `<button type="button" onclick="showupdate(${t.songId})">Update</button>`
-        + `<button type="button" onclick="remove(${t.songId})">Delete</button>` +
+            + t.labelId + "</td><td>"
+            + t.labelName + "</td><td>"
+            + `<button type="button" onclick="showupdate(${t.labelId})">Update</button>`
+            + `<button type="button" onclick="remove(${t.labelId})">Delete</button>` +
             "</td></tr>";
     });
 }
@@ -69,18 +67,13 @@ function display() {
 
 function create() {
     let name = document.getElementById('titleToCreate').value;
-    let name2 = document.getElementById('releasedateToCreate').value;
-    let name3 = document.getElementById('incomeToCreate').value;
-    let name4 = document.getElementById('ratingToCreate').value;
-    fetch('http://localhost:4273/Song/', {
+
+    fetch('http://localhost:4273/label/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(
             {
-                songTitle: name,
-                releasedate: name2,
-                income: name3,
-                rating: name4
+                labelName: name,
             })
     })
         .then(response => response)
@@ -94,32 +87,24 @@ function create() {
 }
 
 function showupdate(id) {
-    document.getElementById('titleToUpdate').value = songs.find(t => t['songId'] == id)['songTitle'];
-    document.getElementById('releasedateToUpdate').value = songs.find(t => t['songId'] == id)['releaseDate'];
-    document.getElementById('incomeToUpdate').value = songs.find(t => t['songId'] == id)['income'];
-    document.getElementById('ratingToUpdate').value = songs.find(t => t['songId'] == id)['rating'];
+    document.getElementById('titleToUpdate').value = labels.find(t => t['labelId'] == id)['labelName'];
     document.getElementById('updateformdiv').style.display = 'flex';
-    songIdToUpdate = id;
+    labelIdToUpdate = id;
 }
 
 function update() {
     document.getElementById('updateformdiv').style.display = 'none';
     let name = document.getElementById('titleToUpdate').value;
-    let name2 = document.getElementById('releasedateToUpdate').value;
-    let name3 = document.getElementById('incomeToUpdate').value;
-    let name4 = document.getElementById('ratingToUpdate').value;
 
 
-    fetch('http://localhost:4273/Song/', {
+    fetch('http://localhost:4273/label/', {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(
             {
-                songId: songIdToUpdate,
-                songTitle: name,
-                releasedate: name2,
-                income: name3,
-                rating: name4
+                labelId: labelIdToUpdate,
+                labelName: name,
+
             })
     })
         .then(response => response)
@@ -133,7 +118,7 @@ function update() {
 }
 
 function remove(id) {
-    fetch('http://localhost:4273/Song/' + id, {
+    fetch('http://localhost:4273/label/' + id, {
         method: 'DELETE',
         headers: { 'Content-Type': 'application/json', },
         body: null
